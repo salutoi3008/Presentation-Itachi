@@ -1,0 +1,219 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    background: #eaf4f0; /* vert très pâle rappel PCB */
+    color: #2d2d2d;
+    }
+    
+    header {
+    background: #3a506b; /* bleu-gris technologique */
+    color: #fdfdfd;
+    padding: 40px 20px;
+    text-align: center;
+    }
+    
+    nav {
+    background: #5c7d8c; /* gris-bleu doux */
+    padding: 10px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    }
+    
+    nav a {
+    color: #e0f7f1; /* turquoise clair */
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: color 0.3s;
+    }
+    
+    nav a:hover {
+    color: #f5c542; /* accent doré comme les circuits */
+    }
+    
+    section {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: auto;
+    background: #ffffff;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    
+    h2 {
+    color: #3a506b;
+    border-bottom: 2px solid #5c7d8c;
+    padding-bottom: 10px;
+    }
+    
+    /* Grid pour les boxes */
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    /* Style des boxes */
+    .image-box {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+    }
+    
+    .image-box img {
+        width: 100%;
+        display: block;
+    }
+    
+    .image-box p {
+        padding: 15px;
+        font-weight: 500;
+        color: #333;
+    }
+    
+    .image-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    /* Overlay caché par défaut */
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1000;
+}
+
+#overlay img {
+    width: 100%;
+    max-width: 200%;
+    max-height: 200%;
+    border: 2px solid #fff;
+    border-radius: 5px;
+}
+
+/* Overlay visible */
+#overlay.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Curseur en mode zoom */
+.zoomable {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.zoomable:hover {
+    transform: scale(1.05);
+}
+    
+/* Bouton retour haut */
+  #backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #178891;
+    color: #fff;
+    font-size: 24px;
+    padding: 10px 14px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
+  }
+  #backToTop:hover {
+    background: #0f6c73;
+    transform: scale(1.1);
+  }
+
+  #themeToggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    background-color: #178891;
+    color: white;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+  
+    footer {
+    background: #3a506b;
+    color: #fdfdfd;
+    text-align: center;
+    padding: 20px;
+    }
+    
+
+/* dark mode */
+/* Mode sombre */
+body.dark-mode {
+    background: #1e1e1e; /* gris très foncé */
+    color: #e0f7f1;       /* texte turquoise clair pour lisibilité */
+}
+
+body.dark-mode header {
+    background: #283845; /* bleu-gris foncé */
+    color: #e0f7f1;
+}
+
+body.dark-mode nav {
+    background: #3b4c5c; /* gris-bleu sombre */
+}
+
+body.dark-mode nav a {
+    color: #a0e7e5;
+}
+
+body.dark-mode nav a:hover {
+    color: #f5c542; /* on garde accent doré */
+}
+
+body.dark-mode section {
+    background: #2e3b4e; /* gris foncé pour les sections */
+    color: #e0f7f1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .image-box {
+    background: #3b4c5c;
+    color: #e0f7f1;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+body.dark-mode footer {
+    background: #283845;
+    color: #e0f7f1;
+}
+
+body.dark-mode h2 {
+    color: #a0c4d6; /* bleu clair/gris clair pour le texte */
+    border-bottom: 2px solid #7aaac0; /* bleu moyen clair pour la bordure */
+}
+
+body .drak-mode .image-box p {
+    padding: 15px;
+    font-weight: 500;
+    color: #e0f7f1;
+}
