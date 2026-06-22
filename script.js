@@ -1,47 +1,66 @@
-const overlay = document.getElementById('overlay');
+/* ============================================================
+   script.js — Itachi Uchiwa
+   ============================================================ */
+// ---- Zoom sur les images ----
+const overlay    = document.getElementById('overlay');
 const overlayImg = document.getElementById('overlay-img');
 
 document.querySelectorAll('.zoomable').forEach(img => {
-    img.addEventListener('click', () => {
-        overlayImg.src = img.src;
-        overlay.classList.add('show');
-    });
+  img.addEventListener('click', () => {
+    overlayImg.src = img.src;
+    overlay.classList.add('show');
+  });
 });
 
-// Fermer l'overlay au clic
 overlay.addEventListener('click', () => {
-    overlay.classList.remove('show');
+  overlay.classList.remove('show');
 });
 
-const button = document.getElementById('backToTop');
 
-  // affiche le bouton quand on descend
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 700) { 
-      button.style.display = 'block';
-    } else {
-      button.style.display = 'none';
-    }
-  });
 
-  // remonter en haut 
-  button.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,           
-      behavior: 'smooth' 
+
+// ---- Bouton retour en haut ----
+const backToTop = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 600) {
+    backToTop.style.display = 'flex';
+  } else {
+    backToTop.style.display = 'none';
+  }
+});
+
+backToTop.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
+
+
+// ---- Toggle thème clair / sombre ----
+const themeToggle = document.getElementById('themeToggle');
+
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('light-mode');
+  themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌙' : '☀️';
+});
+
+
+
+
+// ---- Animation d'entrée des sections au scroll ----
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // une seule fois
+      }
     });
-  });
+  },
+  { threshold: 0.12 }
+);
 
-  const toggleButton = document.getElementById('themeToggle');
-  const body = document.body;
-
-  toggleButton.addEventListener('click', () => {
-    body.classList.toggle('dark-mode'); // ajoute ou retire la classe dark-mode
-
-    // On change l’icône du bouton
-    if (body.classList.contains('dark-mode')) {
-      toggleButton.textContent = '☀️'; // soleil pour mode clair
-    } else {
-      toggleButton.textContent = '🌙'; // lune pour mode sombre
-    }
-  });
+document.querySelectorAll('section').forEach(section => {
+  observer.observe(section);
+});

@@ -1,219 +1,445 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    line-height: 1.6;
-    background: #eaf4f0; /* vert très pâle rappel PCB */
-    color: #2d2d2d;
-    }
-    
-    header {
-    background: #3a506b; /* bleu-gris technologique */
-    color: #fdfdfd;
-    padding: 40px 20px;
-    text-align: center;
-    }
-    
-    nav {
-    background: #5c7d8c; /* gris-bleu doux */
-    padding: 10px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    }
-    
-    nav a {
-    color: #e0f7f1; /* turquoise clair */
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-    transition: color 0.3s;
-    }
-    
-    nav a:hover {
-    color: #f5c542; /* accent doré comme les circuits */
-    }
-    
-    section {
-    padding: 40px 20px;
-    max-width: 900px;
-    margin: auto;
-    background: #ffffff;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-    
-    h2 {
-    color: #3a506b;
-    border-bottom: 2px solid #5c7d8c;
-    padding-bottom: 10px;
-    }
-    
-    /* Grid pour les boxes */
-    .image-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-    }
-    
-    /* Style des boxes */
-    .image-box {
-        background: #fff;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        transition: transform 0.3s, box-shadow 0.3s;
-        text-align: center;
-    }
-    
-    .image-box img {
-        width: 100%;
-        display: block;
-    }
-    
-    .image-box p {
-        padding: 15px;
-        font-weight: 500;
-        color: #333;
-    }
-    
-    .image-box:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    }
+/* ============================================================
+   ITACHI UCHIWA — Design sombre, Sharingan-inspired
+   ============================================================ */
 
-    /* Overlay caché par défaut */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ---- Variables ---- */
+:root {
+  --bg:         #09090f;
+  --bg-card:    #111120;
+  --bg-header:  #060610;
+  --accent:     #c0392b;
+  --accent-dim: rgba(192, 57, 43, 0.15);
+  --accent-glow:rgba(192, 57, 43, 0.35);
+  --gold:       #c9a227;
+  --text:       #e8e0d5;
+  --text-muted: #6e6e88;
+  --border:     rgba(192, 57, 43, 0.25);
+  --nav-bg:     rgba(9, 9, 15, 0.92);
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ---- Base ---- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Crimson Text', Georgia, serif;
+  font-size: 18px;
+  line-height: 1.75;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ============================================================
+   HEADER — Hero plein écran avec anneaux Sharingan
+   ============================================================ */
+
+header {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-header);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 80px 20px;
+}
+
+/* Anneaux animés — effet Sharingan */
+.ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.ring-1 { width: 300px;  height: 300px;  opacity: 0.08; animation-delay: 0s; }
+.ring-2 { width: 550px;  height: 550px;  opacity: 0.06; animation-delay: 1s; }
+.ring-3 { width: 800px;  height: 800px;  opacity: 0.04; animation-delay: 2s; }
+.ring-4 { width: 1050px; height: 1050px; opacity: 0.02; animation-delay: 3s; }
+
+@keyframes breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: inherit; }
+  50%       { transform: translate(-50%, -50%) scale(1.06); opacity: 0.12; }
+}
+
+/* Dégradé  central */
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%,
+    rgba(192, 57, 43, 0.06) 0%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+/* Contenu du header */
+.header-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+header h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 60px var(--accent-glow);
+}
+
+header h1 span {
+  color: var(--accent);
+  display: block;
+}
+
+/* Ligne décorative */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  margin: 32px auto;
+}
+
+header blockquote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  border: none;
+  padding: 0;
+  margin-bottom: 20px;
+  quotes: "«" "»";
+}
+
+.header-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+
+nav {
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+nav a {
+  display: inline-block;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin: 0 4px;
+  padding: 16px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: color 0.25s;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.25s ease;
+}
+
+nav a:hover          { color: var(--text); }
+nav a:hover::after   { width: calc(100% - 24px); }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+main {
+  padding: 20px 0 80px;
+}
+
+section {
+  position: relative;
+  max-width: 860px;
+  margin: 48px auto;
+  padding: 44px 48px 44px 52px;
+  background: var(--bg-card);
+  border-left: 2px solid var(--accent);
+  /* Entrée animée au scroll */
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Numéro de section */
+.section-label {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--border);
+}
+
+h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+p + p { margin-top: 12px; }
+
+/* ---- Listes ---- */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+ul li {
+  padding: 10px 0 10px 22px;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+ul li:last-child { border-bottom: none; }
+
+ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+ul li strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ============================================================
+   IMAGE GRID
+   ============================================================ */
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.image-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.3s, transform 0.3s;
+}
+
+.image-box img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.image-box p {
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.image-box:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.zoomable {
+  cursor: zoom-in;
+  transition: opacity 0.25s;
+}
+
+.zoomable:hover { opacity: 0.85; }
+
+/* ============================================================
+   OVERLAY ZOOM
+   ============================================================ */
+
 #overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s;
-    z-index: 1000;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2000;
+  cursor: zoom-out;
 }
 
 #overlay img {
-    width: 100%;
-    max-width: 200%;
-    max-height: 200%;
-    border: 2px solid #fff;
-    border-radius: 5px;
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border: 1px solid var(--border);
 }
 
-/* Overlay visible */
 #overlay.show {
-    visibility: visible;
-    opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 
-/* Curseur en mode zoom */
-.zoomable {
-    cursor: pointer;
-    transition: transform 0.3s;
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer {
+  background: var(--bg-header);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
 }
 
-.zoomable:hover {
-    transform: scale(1.05);
-}
-    
-/* Bouton retour haut */
-  #backToTop {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #178891;
-    color: #fff;
-    font-size: 24px;
-    padding: 10px 14px;
-    border-radius: 50%;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s, transform 0.3s;
-    z-index: 1000;
-  }
-  #backToTop:hover {
-    background: #0f6c73;
-    transform: scale(1.1);
-  }
-
-  #themeToggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 15px;
-    font-size: 18px;
-    cursor: pointer;
-    border: none;
-    background-color: #178891;
-    color: white;
-    border-radius: 5px;
-    z-index: 1000;
-  }
-  
-    footer {
-    background: #3a506b;
-    color: #fdfdfd;
-    text-align: center;
-    padding: 20px;
-    }
-    
-
-/* dark mode */
-/* Mode sombre */
-body.dark-mode {
-    background: #1e1e1e; /* gris très foncé */
-    color: #e0f7f1;       /* texte turquoise clair pour lisibilité */
+.footer-clan {
+  font-size: 2rem;
+  color: var(--accent);
+  opacity: 0.4;
+  margin-bottom: 8px;
+  letter-spacing: 0.2em;
 }
 
-body.dark-mode header {
-    background: #283845; /* bleu-gris foncé */
-    color: #e0f7f1;
+/* ============================================================
+   BOUTONS FLOTTANTS
+   ============================================================ */
+
+#backToTop {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, transform 0.25s;
+  z-index: 999;
 }
 
-body.dark-mode nav {
-    background: #3b4c5c; /* gris-bleu sombre */
+#backToTop:hover {
+  background: #a93226;
+  transform: translateY(-2px);
 }
 
-body.dark-mode nav a {
-    color: #a0e7e5;
+#themeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text);
+  z-index: 1001;
+  transition: border-color 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-body.dark-mode nav a:hover {
-    color: #f5c542; /* on garde accent doré */
+#themeToggle:hover { border-color: var(--accent); }
+
+/* ============================================================
+   MODE CLAIR (toggle)
+   ============================================================ */
+
+body.light-mode {
+  --bg:        #f0ece4;
+  --bg-card:   #ffffff;
+  --bg-header: #1c1c2e;
+  --text:      #1a1a2e;
+  --text-muted:#777;
+  --border:    rgba(192, 57, 43, 0.2);
+  --nav-bg:    rgba(28, 28, 46, 0.95);
 }
 
-body.dark-mode section {
-    background: #2e3b4e; /* gris foncé pour les sections */
-    color: #e0f7f1;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+body.light-mode section {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
 }
 
-body.dark-mode .image-box {
-    background: #3b4c5c;
-    color: #e0f7f1;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+body.light-mode ul li {
+  border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
-body.dark-mode footer {
-    background: #283845;
-    color: #e0f7f1;
+body.light-mode ul li strong { color: #111; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 640px) {
+  section { padding: 32px 24px 32px 28px; margin: 32px 16px; }
+  nav a   { font-size: 0.6rem; padding: 14px 7px; margin: 0 1px; }
+  header h1 { font-size: clamp(2.8rem, 14vw, 5rem); }
 }
 
-body.dark-mode h2 {
-    color: #a0c4d6; /* bleu clair/gris clair pour le texte */
-    border-bottom: 2px solid #7aaac0; /* bleu moyen clair pour la bordure */
-}
-
-body .drak-mode .image-box p {
-    padding: 15px;
-    font-weight: 500;
-    color: #e0f7f1;
+@media (prefers-reduced-motion: reduce) {
+  .ring { animation: none; }
+  section { opacity: 1; transform: none; transition: none; }
 }
