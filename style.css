@@ -9,7 +9,7 @@
   --bg:         #09090f;
   --bg-card:    #111120;
   --bg-header:  #060610;
-  --accent:     #c0392b;
+  --accent:     #c0392b;      /* rouge Sharingan */
   --accent-dim: rgba(192, 57, 43, 0.15);
   --accent-glow:rgba(192, 57, 43, 0.35);
   --gold:       #c9a227;
@@ -23,7 +23,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 /* ---- Base ---- */
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; }  /* Défilement fluide*/
 
 body {
   font-family: 'Crimson Text', Georgia, serif;
@@ -52,32 +52,34 @@ header {
 /* Anneaux animés — effet Sharingan */
 .ring {
   position: absolute;
-  border-radius: 50%;
-  border: 1px solid var(--accent);
+  border-radius: 50%;    /*  transforme le carré en cercle */
+  border: 1px solid var(--accent); /* juste un contour rouge, pas de fond */
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);/* centre le cercle */
   animation: breathe 6s ease-in-out infinite;
 }
 
+/* Chaque anneau a une taille et opacité différente */
 .ring-1 { width: 300px;  height: 300px;  opacity: 0.08; animation-delay: 0s; }
 .ring-2 { width: 550px;  height: 550px;  opacity: 0.06; animation-delay: 1s; }
 .ring-3 { width: 800px;  height: 800px;  opacity: 0.04; animation-delay: 2s; }
 .ring-4 { width: 1050px; height: 1050px; opacity: 0.02; animation-delay: 3s; }
 
+/* Animation de respiration*/
 @keyframes breathe {
   0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: inherit; }
   50%       { transform: translate(-50%, -50%) scale(1.06); opacity: 0.12; }
 }
 
-/* Dégradé  central */
+/* Dégradé rouge central */
 header::before {
   content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 60% 60% at 50% 50%,
-    rgba(192, 57, 43, 0.06) 0%,
-    transparent 70%);
+    rgba(192, 57, 43, 0.06) 0%,  /* rouge très transparent au centre */
+    transparent 70%);                /* disparaît vers les bords */
   pointer-events: none;
 }
 
@@ -148,9 +150,9 @@ nav {
   text-align: center;
   position: sticky;
   top: 0;
-  z-index: 100;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  z-index: 100; 
+  backdrop-filter: blur(12px);  /* effet de flou*/ 
+  -webkit-backdrop-filter: blur(12px); 
 }
 
 nav a {
@@ -268,7 +270,7 @@ ul li strong {
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* grille adaptative*/
   gap: 16px;
   margin-top: 8px;
 }

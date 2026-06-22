@@ -5,10 +5,11 @@
 const overlay    = document.getElementById('overlay');
 const overlayImg = document.getElementById('overlay-img');
 
-document.querySelectorAll('.zoomable').forEach(img => {
+
+document.querySelectorAll('.zoomable').forEach(img => { 
   img.addEventListener('click', () => {
-    overlayImg.src = img.src;
-    overlay.classList.add('show');
+    overlayImg.src = img.src;     /* change l'image affiché*/ 
+    overlay.classList.add('show'); /* affiche l'overlay*/
   });
 });
 
@@ -26,7 +27,7 @@ window.addEventListener('scroll', () => {
   if (window.scrollY > 600) {
     backToTop.style.display = 'flex';
   } else {
-    backToTop.style.display = 'none';
+    backToTop.style.display = 'none';  /* ferme en clquant n'importe où */
   }
 });
 
@@ -58,7 +59,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.12 }
+  { threshold: 0.12 }  /* Déclenché lorsque 12% de la section est visible */
 );
 
 document.querySelectorAll('section').forEach(section => {
